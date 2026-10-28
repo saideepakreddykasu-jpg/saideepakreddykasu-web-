@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex University | Admissions & Campus Life</title>
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #1e3a8a;       /* Deep Navy Blue */
+            --accent: #d97706;        /* Warm Gold */
+            --bg-light: #f8fafc;      /* Soft Light Gray */
+            --card-bg: #ffffff;       /* Pure White */
+            --text-dark: #0f172a;     /* Slate Dark Text */
+            --text-muted: #475569;    /* Muted Text */
+            --border-color: #e2e8f0;  /* Subtle Border */
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .brand-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Banner */
+        .hero {
+            margin-top: 60px;
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding: 6rem 2rem 5rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight:

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduStream - Online Learning Platform</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Course Categories */
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .categories {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-chip {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .category-chip:hover, .category-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Course Card */
+        .course-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background: #cbd5e1;
+        }
+
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        /* Instructor Profile */
+        .instructor-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+        }
+
+        .instructor-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            object-fit: cover;
+        }
+
+        .instructor-info .name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .instructor-info .role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Learning Objectives */
+        .objectives {
+            margin-bottom: 1.25rem;
+        }
+
+        .objectives-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .objectives ul {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            margin-bottom: 1.25rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Enrollment Button */
+        .btn-enroll {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-enroll:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <a href="#" class="logo">EduStream</a>
+        <ul class="nav-links">
+            <li><a href="#">Catalog</a></li>
+            <li><a href="#">My Courses</a></li>
+            <li><a href="#">Instructors</a></li>
+            <li><a href="#">Resources</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <!-- Course Categories -->
+        <h2 class="section-title">Explore Categories</h2>
+        <div class="categories">
+            <button class="category-chip active">All Courses</button>
+            <button class="category-chip">Web Development</button>
+            <button class="category-chip">Data Science</button>
+            <button class="category-chip">UI/UX Design</button>
+            <button class="category-chip">Mobile Development</button>
+            <button class="category-chip">Cybersecurity</button>
+            <button class="category-chip">Cloud Computing</button>
+        </div>
+
+        <!-- Course Cards Grid -->
+        <h2 class="section-title">Featured Courses</h2>
+        <div class="course-grid">
+
+            <!-- Course Card 1 -->
+            <div class="course-card">
+                <div class="thumbnail-container">
+                    <!-- Placeholder image (Unsplash) -->
+                    <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=600&q=80" alt="Course Thumbnail">
+                    <span class="badge">12 Lessons</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Advanced Full-Stack Web Development</h3>
+                    <p class="course-description">Master modern frontend and backend architectures using HTML, CSS, JavaScript, and Node.js.</p>
+                    
+                    <!-- Instructor Profile -->
+                    <div class="instructor-profile">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Instructor" class="instructor-avatar">
+                        <div class="instructor-info">
+                            <div class="name">Sarah Jenkins</div>
+                            <div class="role">Senior Software Engineer</div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Objectives -->
+                    <div class="objectives">
+                        <div class="objectives-title">What you'll learn:</div>
+                        <ul>
+                            <li>Build scalable REST APIs</li>
+                            <li>Develop responsive UI components</li>
+                            <li>Deploy apps securely to cloud servers</li>
+                        </ul>
+                    </div>
+
+                    <!-- Progress Indicator -->
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Course Progress</span>
+                            <span>45%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 45%;"></div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn-enroll">Continue Learning</a>
+                </div>
+            </div>
+
+            <!-- Course Card 2 -->
+            <div class="course-card">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="Course Thumbnail">
+                    <span class="badge">18 Lessons</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">UI/UX Design Masterclass</h3>
+                    <p class="course-description">Learn wireframing, user research, prototyping, and modern design systems using Figma.</p>
+                    
+                    <!-- Instructor Profile -->
+                    <div class="instructor-profile">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Instructor" class="instructor-avatar">
+                        <div class="instructor-info">
+                            <div class="name">Marcus Vance</div>
+                            <div class="role">Lead Product Designer</div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Objectives -->
+                    <div class="objectives">
+                        <div class="objectives-title">What you'll learn:</div>
+                        <ul>
+                            <li>Conduct user personas & testing</li>
+                            <li>Design high-fidelity interactive prototypes</li>
+                            <li>Build reusable design systems</li>
+                        </ul>
+                    </div>
+
+                    <!-- Progress Indicator -->
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Course Progress</span>
+                            <span>10%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 10%;"></div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn-enroll">Continue Learning</a>
+                </div>
+            </div>
+
+            <!-- Course Card 3 -->
+            <div class="course-card">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Course Thumbnail">
+                    <span class="badge">15 Lessons</span>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Data Science & Python Fundamentals</h3>
+                    <p class="course-description">Dive into data analysis, visualization, and machine learning basics using Pandas, NumPy, and Scikit-Learn.</p>
+                    
+                    <!-- Instructor Profile -->
+                    <div class="instructor-profile">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Instructor" class="instructor-avatar">
+                        <div class="instructor-info">
+                            <div class="name">Dr. Elena Rostova</div>
+                            <div class="role">Data Scientist & Researcher</div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Objectives -->
+                    <div class="objectives">
+                        <div class="objectives-title">What you'll learn:</div>
+                        <ul>
+                            <li>Clean and manipulate complex datasets</li>
+                            <li>Create statistical visualizations</li>
+                            <li>Train predictive machine learning models</li>
+                        </ul>
+                    </div>
+
+                    <!-- Progress Indicator -->
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Course Progress</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn-enroll">Continue Learning</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
