@@ -15,7 +15,7 @@
             --border: #e2e8f0;
         }
 
-        * {
+         {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -28,7 +28,7 @@
             line-height: 1.6;
         }
 
-        /* Header / Navbar */
+
         header {
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
@@ -65,14 +65,14 @@
             color: var(--primary);
         }
 
-        /* Main Container */
+        
         .container {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        /* Course Categories */
+        
         .section-title {
             font-size: 1.75rem;
             margin-bottom: 1rem;
@@ -105,14 +105,14 @@
             border-color: var(--primary);
         }
 
-        /* Course Grid */
+        
         .course-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
-        /* Course Card */
+        
         .course-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -173,7 +173,7 @@
             flex-grow: 1;
         }
 
-        /* Instructor Profile */
+        
         .instructor-profile {
             display: flex;
             align-items: center;
@@ -221,7 +221,7 @@
             color: var(--text-muted);
         }
 
-        /* Progress Indicator */
+
         .progress-container {
             margin-bottom: 1.25rem;
         }
@@ -248,7 +248,6 @@
             border-radius: 4px;
         }
 
-        /* Enrollment Button */
         .btn-enroll {
             background: var(--primary);
             color: white;
@@ -266,7 +265,6 @@
             background: var(--primary-hover);
         }
 
-        /* Responsive Breakpoints */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
